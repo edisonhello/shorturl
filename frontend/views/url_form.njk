@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <title>Shorten - Url</title>
+    </head>
+    <body>
+        <div id="form-div">
+            <input type="url" id="form-url"> <!-- <br>
+            <input type="text" id="custom">
+            <input type="checkbox" id="random"> random <br> -->
+            <input type="button" id="form-submit" value="submit">
+        </div>
+    </body>
+</html>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script src="{{deploy_website}}/src/random_button_lock.js"></script>
+
+<script>
+
+const BODY = document.body
+
+const FORM_DIV = document.getElementById("form-div")
+const FORM_SUBMIT = document.getElementById("form-submit")
+const FORM_URL = document.getElementById("form-url")
+
+function setupInformation() {
+    const INFORMATION = document.createElement("div")
+    INFORMATION.setAttribute("id", "information")
+    INFORMATION.style.display = "flex"
+    INFORMATION.style["justify-content"] = "center";
+    INFORMATION.style["align-items"] = "center";
+    INFORMATION.style["text-align"] = "center";
+    INFORMATION.style["min-height"] = "100vh";
+    BODY.appendChild(INFORMATION)
+    return INFORMATION
+}
+
+function showShort(url, shorturl) {
+    FORM_DIV.parentNode.removeChild(FORM_DIV)
+    INFORMATION = setupInformation()
+    INFO_URL = document.createElement("input")
+    INFO_URL.setAttribute("id", "info-url")
+    INFO_URL.setAttribute("type", "text")
+    INFO_URL.setAttribute("value", "{{deploy_website}}/" + shorturl)
+    INFO_URL.setAttribute("readOnly", "true")
+    INFO_URL.style.width = "80%"
+    INFORMATION.appendChild(INFO_URL)
+    BODY.appendChild(INFORMATION)
+}
+
+FORM_SUBMIT.addEventListener('click', function() {
+    const url = FORM_URL.value
+    if (url == "") return
+    console.log("post url = " + url)
+    axios.post("{{deploy_website}}/api/submit/url", { 
+        url: url
+    }).then((res) => {
+        console.log("Get result: ", res)
+        if (res.status === 200) {
+            showShort(url, res.data)
+        }
+    }).catch((err) => {
+        throw err
+    })
+})
+
+</script>
+
+<style>
+
+.lock input[readonly] {
+      border-color: darkgrey;
+      border-style: solid;
+      border-width: 2px;
+      background-color: rgb(235, 235, 228);
+      color: rgb(84, 84, 84);
+      padding: 2px 0px;
+}
+
+#form-div {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+#form-url {
+    width: 80%;
+}
+
+#form-submit {
+    width: 10%;
+}
+
+</style>
