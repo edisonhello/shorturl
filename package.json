@@ -1,0 +1,7 @@
+{
+  "name": "short-url",
+  "version": "0.0.0",
+  "main": "index.js",
+  "author": "edisonhello <edisonhello@hotmail.com>",
+  "license": "MIT"
+}
