@@ -3,5 +3,36 @@
   "version": "0.0.0",
   "main": "index.js",
   "author": "edisonhello <edisonhello@hotmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "koa": "^2.13.1",
+    "koa-router": "^10.0.0",
+    "koa-static": "^5.0.0",
+    "vue": "^2.6.12",
+    "vue-router": "^3.5.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "7",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-vue": "^2.0.2",
+    "css-loader": "^5.1.0",
+    "file-loader": "^6.2.0",
+    "vue-loader": "^15.9.6",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "4",
+    "webpack-cli": "^4.5.0"
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "vue"
+    ]
+  }
 }
