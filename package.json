@@ -8,13 +8,13 @@
   "scripts": {
     "build": "webpack",
     "build:dev": "webpack --mode development",
-	"dev": "concurrently \"nodemon index.js\" \"webpack --mode development --watch\""
+    "dev": "concurrently \"nodemon index.js\" \"webpack --mode development --watch\""
   },
   "dependencies": {
     "dotenv": "^8.2.0",
     "koa": "^2.13.1",
     "koa-router": "^10.0.0",
-    "koa-static": "^5.0.0",
+    "koa-send": "^5.0.1",
     "vue": "^2.6.12",
     "vue-router": "^3.5.1"
   },
