@@ -13,8 +13,10 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "koa": "^2.13.1",
+    "koa-body": "^4.2.0",
     "koa-router": "^10.0.0",
     "koa-send": "^5.0.1",
+    "mongoose": "^5.11.18",
     "vue": "^2.6.12",
     "vue-router": "^3.5.1"
   },

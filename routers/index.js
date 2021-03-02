@@ -16,13 +16,8 @@ const { debug, info } = newLogger('router');
 
 const router = new Router();
 
-router.use(apiRoute);
+router.use('/api', apiRoute.routes());
 router.use(shortUrlRouter);
-
-router.use((ctx, next) => {
-  info(ctx);
-  return next();
-})
 
 const rootSetting = { root: path.resolve(__dirname, '..', 'public') };
 router.use('/dist/(.*)', async ctx => {
