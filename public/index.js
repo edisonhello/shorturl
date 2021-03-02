@@ -2,25 +2,19 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import router from './router.js';
 import checkUrlPath from './utils/checkUrlPath.js';
 
 Vue.use(VueRouter);
 
-const Foo = { template: '<div>foo</div>' }
-const Bar = { template: '<div>bar</div>' }
-
-const routes = [
-  { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar }
-]
-
-const router = new VueRouter({
-  routes
-})
+checkUrlPath();
 
 const app = new Vue({
-  router
-}).$mount('#app-root');
+  el: '#app-root',
+  router,
+});
 
-
-checkUrlPath();
+export default app;
