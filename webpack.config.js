@@ -1,6 +1,8 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
+
 import VueLoaderPlugin from 'vue-loader/lib/plugin.js'
+import webpack from 'webpack';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -46,6 +48,10 @@ export default {
   plugins: [
     // make sure to include the plugin for the magic
     new VueLoaderPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    }),
   ],
   resolve: {
     alias: {
