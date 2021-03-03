@@ -2,7 +2,7 @@
 import newLogger from "../../common/logger.js";
 import { getRandomAlias } from "../../common/alias.js";
 import { Record } from "../../models/Record.js";
-import isUrl from "../../utils/isUrl.js";
+import isUrl from "../../common/isUrl.js";
 import ErrorMap from "../../common/ErrorMap.js";
 
 const { debug, info } = newLogger('controllers/api/createNew', true);
