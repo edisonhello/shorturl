@@ -24,6 +24,8 @@
 import isUrl from '../../common/isUrl.js';
 import notification from './Notification.vue';
 
+import { post } from '../api.js';
+
 export default {
   data: () => {
     return {
@@ -31,11 +33,16 @@ export default {
     }
   },
   methods: {
-    submit: function () {
+    submit: async function () {
       const { target } = this;
+
       if (!isUrl(target)) {
-        this.$refs.urlerror.show();
+        return this.$refs.urlerror.show();
       }
+
+      const { alias } = await post('createNew', { target });
+
+      console.log(alias, target);
     },
   },
   components: {
