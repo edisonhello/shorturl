@@ -15,14 +15,14 @@
       </div>
     </div>
 
-    <notification toastId="urlerror" type="danger" text="Oops, this is not an url"></notification>
+    <notification ref="urlerror" type="danger" text="Oops, this is not an url"></notification>
   </div>
 </template>
 
 <script>
 
 import isUrl from '../../common/isUrl.js';
-import notification, { showNotification } from './Notification.vue';
+import notification from './Notification.vue';
 
 export default {
   data: () => {
@@ -30,14 +30,11 @@ export default {
       target: '',
     }
   },
-  mounted: () => { },
-  watch: { },
   methods: {
     submit: function () {
       const { target } = this;
       if (!isUrl(target)) {
-        console.log('not url!');
-        showNotification('urlerror');
+        this.$refs.urlerror.show();
       }
     },
   },

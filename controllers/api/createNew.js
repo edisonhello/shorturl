@@ -1,6 +1,6 @@
 
 import newLogger from "../../common/logger.js";
-import { getRandomAlias } from "../../common/alias.js";
+import { getRandomString } from "../../common/randomString.js";
 import { Record } from "../../models/Record.js";
 import isUrl from "../../common/isUrl.js";
 import ErrorMap from "../../common/ErrorMap.js";
@@ -9,7 +9,7 @@ const { debug, info } = newLogger('controllers/api/createNew', true);
 
 async function getUniqueAlias() {
   while (true) {
-    const alias = getRandomAlias();
+    const alias = getRandomString();
     if (!await Record.exists({ alias })) {
       return alias;
     }
