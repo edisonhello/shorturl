@@ -1,35 +1,50 @@
 
 <template>
   <div class="container vh-100 d-flex flex-column justify-content-center">
-    <div class="row">
-      <div class="col text-center" style="font-family: 'RocknRoll One', sans-serif; color: #777777; font-size: 60px;">
-        Meow!
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-group my-3">
-        <input type="text" class="form-control" placeholder="https://google.com" v-model="target">
-        <div class="input-group-append">
-          <button class="btn btn-outline-info" type="button" v-on:click="submit">ニャ！</button>
+    <Title></Title>
+    <div v-if="state == 'form'">
+      <div class="row">
+        <div class="input-group my-3">
+          <input type="text" class="form-control" placeholder="https://google.com" v-model="target">
+          <div class="input-group-append">
+            <button class="btn btn-outline-info" type="button" v-on:click="submit">ニャ！</button>
+          </div>
         </div>
       </div>
+      <Notification ref="urlerror" type="danger" text="Oops, this is not an url"></Notification>
     </div>
 
-    <notification ref="urlerror" type="danger" text="Oops, this is not an url"></notification>
+    <div v-if="state == 'result'">
+      <div class="text-center">
+        Now {{ aliasUrl }} is pointed to {{ target }}
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 
 import isUrl from '../../common/isUrl.js';
-import notification from './Notification.vue';
 
 import { post } from '../api.js';
+
+import Notification from './Notification.vue';
+import Title from './Title.vue';
+
+import getDomainName from '../utils/getDomain.js';
+
 
 export default {
   data: () => {
     return {
+      alias: '',
+      state: 'form',
       target: '',
+    }
+  },
+  computed: {
+    aliasUrl: function () {
+      return `${getDomainName()}/${this.alias}`;
     }
   },
   methods: {
@@ -42,11 +57,17 @@ export default {
 
       const { alias } = await post('createNew', { target });
 
-      console.log(alias, target);
+      this.alias = alias;
+
+      this.switchToResult();
     },
+    switchToResult: function () {
+      this.state = 'result';
+    }
   },
   components: {
-    notification,
+    Title,
+    Notification,
   },
 }
 
