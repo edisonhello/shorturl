@@ -4,12 +4,13 @@
     <Title></Title>
     <div class="row">
       <div class="input-group my-3">
-        <input type="text" class="form-control" placeholder="https://google.com" v-model="target">
+        <input type="text" class="form-control" placeholder="https://google.com" v-model="target" v-on:keypress="filterSubmit">
         <div class="input-group-append">
           <button class="btn btn-outline-info" type="button" v-on:click="submit">ニャ！</button>
         </div>
       </div>
     </div>
+
     <Notification ref="urlerror" type="danger" text="Oops, this is not an url"></Notification>
   </div>
 </template>
@@ -50,6 +51,9 @@ export default {
 
       this.setAlias(alias);
       this.$router.push({ path: 'preview' });
+    },
+    filterSubmit: function (e) {
+      if (e.key === 'Enter') this.submit();
     },
     ...mapMutations('aliasRecord', [
       'setAlias',

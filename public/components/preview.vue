@@ -3,7 +3,10 @@
   <div class="container vh-100 d-flex flex-column justify-content-center">
     <Title text="Success!"></Title>
     <div class="text-center">
-      Now {{ aliasUrl }} is pointed to {{ target }}
+      Now 
+      <a v-bind:href="aliasUrl"> {{ aliasUrl }} </a>
+      is pointed to 
+      <a v-bind:href="target"> {{ target }} </a>
     </div>
   </div>
 </template>
