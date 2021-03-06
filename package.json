@@ -20,12 +20,15 @@
     "mongoose": "^5.11.18",
     "style-loader": "^2.0.0",
     "vue": "^2.6.12",
-    "vue-router": "^3.5.1"
+    "vue-router": "^3.5.1",
+    "vuex": "^3.6.2",
+    "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "7",
-    "babel-preset-env": "^1.7.0",
+    "@babel/core": "^7.13.8",
+    "@babel/plugin-transform-destructuring": "^7.13.0",
+    "@babel/preset-env": "^7.13.9",
+    "babel-loader": "^8.2.2",
     "babel-preset-vue": "^2.0.2",
     "bootstrap": "^4.6.0",
     "concurrently": "^6.0.0",
@@ -43,8 +46,11 @@
   },
   "babel": {
     "presets": [
-      "env",
+      "@babel/preset-env",
       "vue"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-destructuring"
     ]
   }
 }
