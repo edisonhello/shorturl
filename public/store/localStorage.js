@@ -8,10 +8,11 @@ export function getKeyName(keyName) {
 /**
  * 
  * @param {string} moduleName 
+ * @param {*} vuex
  * @param {*} mutation 
  * @param {*} state Global state of vuex
  */
-export function storeStateOnMutate(moduleName, mutation, state) {
+export function storeStateOnMutate(moduleName, vuex, mutation, state) {
   setStorage(getKeyName(moduleName), JSON.stringify(state[moduleName]));
 }
 
@@ -20,16 +21,17 @@ export function storeStateOnMutate(moduleName, mutation, state) {
  * @param {string} moduleName 
  */
 export function getStoreStateOnMutate(moduleName) {
-  return (mutation, state) => storeStateOnMutate(moduleName, mutation, state);
+  return (vuex, mutation, state) => storeStateOnMutate(moduleName, vuex, mutation, state);
 }
 
 /**
  * 
  * @param {string} moduleName 
+ * @param {*} vuex
  * @param {*} state Global state of vuex
  */
-export function restoreState(moduleName, state) {
-  this.replaceState(Object.assign(state, { [moduleName]: JSON.parse(getStorage(getKeyName(moduleName))) }));
+export function restoreState(moduleName, vuex, state) {
+  vuex.replaceState(Object.assign(state, { [moduleName]: JSON.parse(getStorage(getKeyName(moduleName))) }));
 }
 
 /**
@@ -37,5 +39,5 @@ export function restoreState(moduleName, state) {
  * @param {string} moduleName 
  */
 export function getRestoreState (moduleName) {
-  return function (state) { restoreState.bind(this)(moduleName, state); }
+  return (vuex, state) => restoreState(moduleName, vuex, state);
 }

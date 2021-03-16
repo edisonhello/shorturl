@@ -17,7 +17,7 @@ const store = new Vuex.Store({
   mutations: {
     initializeStore(state) {
       forIn(modules, (module, moduleName) => {
-        module.onInit?.bind(this)(state);
+        module.onInit?.(this, state);
       });
     }
   }
@@ -29,7 +29,7 @@ store.subscribe((mutation, state) => {
 
   console.log(mutation, state);
   forIn(modules, (module, moduleName) => {
-    module.onMutation?.bind(this)(mutation, state);
+    module.onMutation?.(this, mutation, state);
   });
 })
 
