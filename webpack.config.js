@@ -48,14 +48,10 @@ export default {
   plugins: [
     // make sure to include the plugin for the magic
     new VueLoaderPlugin(),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery'
-    }),
   ],
   resolve: {
     alias: {
-      'vue': 'vue/dist/vue.js',
+      vue: 'vue/dist/vue.js',
     }
   },
 };
