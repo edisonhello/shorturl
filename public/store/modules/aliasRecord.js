@@ -1,4 +1,6 @@
 
+import { getRestoreState, getStoreStateOnMutate } from "../localStorage.js";
+
 const store = {
   namespaced: true,
   state: () => {
@@ -21,6 +23,8 @@ const store = {
       state.target = newTarget;
     },
   },
+  onInit: getRestoreState('aliasRecord'),
+  onMutation: getStoreStateOnMutate('aliasRecord'),
 };
 
 export default store;

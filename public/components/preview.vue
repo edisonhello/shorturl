@@ -4,18 +4,33 @@
     <Title text="Success!"></Title>
     <div class="text-center">
       Now 
-      <a v-bind:href="aliasUrl"> {{ aliasUrl }} </a>
+      <span class="fake-link" v-on:click="routeTo(aliasUrl)"> {{ aliasUrl }} </span>
+      (<span v-on:click="copyToClipboard"> copy </span>)
       is pointed to 
-      <a v-bind:href="target"> {{ target }} </a>
+      <span class="fake-link" v-on:click="routeTo(target)"> {{ target }} </span>
     </div>
+
+    <Notification ref="copysuccess" type="success" text="Copy successed"></Notification>
+    <Notification ref="copyfailed" type="danger" text="Copy failed"></Notification>
   </div>
 </template>
+
+<style scoped>
+.fake-link {
+  color: #1273BA;
+  cursor: pointer;
+}
+</style>
 
 <script>
 import { mapState } from 'vuex';
 import getDomain from '../utils/getDomain.js';
 
 import Title from './Title.vue';
+import Notification from './Notification.vue';
+
+import clipboard from '../utils/clipboard.js';
+import routeTo from '../utils/routeTo.js';
 
 export default {
   computed: {
@@ -24,8 +39,20 @@ export default {
     },
     ...mapState('aliasRecord', ['alias', 'target']),
   },
+  methods: {
+    routeTo,
+    copyToClipboard: async function () {
+      try {
+        await clipboard(this.aliasUrl);
+        this.$refs.copysuccess.show();
+      } catch (e) {
+        this.$refs.copyfailed.show();
+      }
+    },
+  },
   components: {
     Title,
+    Notification,
   },
 }
 

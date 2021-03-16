@@ -17,6 +17,7 @@
     "koa-body": "^4.2.0",
     "koa-router": "^10.0.0",
     "koa-send": "^5.0.1",
+    "lodash": "^4.17.21",
     "mongoose": "^5.11.18",
     "style-loader": "^2.0.0",
     "vue": "^2.6.12",

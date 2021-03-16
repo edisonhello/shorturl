@@ -50,6 +50,8 @@ export default {
       const { alias } = await post('createNew', { target });
 
       this.setAlias(alias);
+      this.setTarget(target);
+
       this.$router.push({ path: 'preview' });
     },
     filterSubmit: function (e) {
@@ -61,9 +63,6 @@ export default {
     ]),
   },
   watch: {
-    target: function(target) {
-      this.setTarget(target);
-    }
   },
   components: {
     Title,

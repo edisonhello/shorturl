@@ -36,7 +36,7 @@ export default {
       return `bg-${this.type}`;
     },
     textClass: function () {
-      if (this.type === 'danger') return 'text-white';
+      if (['danger', 'success'].includes('danger')) return 'text-white';
     },
     styleClass: function () {
       return [this.bgClass, this.textClass];

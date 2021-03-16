@@ -22,6 +22,9 @@ const app = new Vue({
   el: '#app-root',
   router,
   store,
+  beforeCreate() {
+    this.$store.commit('initializeStore');
+  },
 });
 
 export default app;
