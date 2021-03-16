@@ -10,8 +10,6 @@
         </div>
       </div>
     </div>
-
-    <Notification ref="urlerror" type="danger" text="Oops, this is not an url"></Notification>
   </div>
 </template>
 
@@ -23,7 +21,6 @@ import isUrl from '../../common/isUrl.js';
 
 import { post } from '../api.js';
 
-import Notification from './Notification.vue';
 import Title from './Title.vue';
 
 import getDomainName from '../utils/getDomain.js';
@@ -43,8 +40,10 @@ export default {
     submit: async function () {
       const { target } = this;
 
+      // console.log('button pressed', this.$refs.urlerror);
+
       if (!isUrl(target)) {
-        return this.$refs.urlerror.show();
+        return this.showNotUrlError();
       }
 
       const { alias } = await post('createNew', { target });
@@ -56,6 +55,15 @@ export default {
     },
     filterSubmit: function (e) {
       if (e.key === 'Enter') this.submit();
+    },
+    showNotUrlError: function () {
+      this.$bvToast.toast('This is not an url!', {
+        variant: 'danger',
+        title: 'Oops!',
+        toaster: 'b-toaster-bottom-right',
+        append: true,
+        autoHideDelay: 2500,
+      })
     },
     ...mapMutations('aliasRecord', [
       'setAlias',

@@ -1,5 +1,5 @@
 
-import { isObject } from 'lodash';
+import isObject from 'lodash/isObject';
 
 export function set(key, value) {
   if (isObject(value)) {

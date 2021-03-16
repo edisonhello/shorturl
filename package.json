@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "bootstrap-vue": "^2.21.2",
     "dotenv": "^8.2.0",
     "koa": "^2.13.1",
     "koa-body": "^4.2.0",
@@ -19,6 +20,7 @@
     "koa-send": "^5.0.1",
     "lodash": "^4.17.21",
     "mongoose": "^5.11.18",
+    "portal-vue": "^2.1.7",
     "style-loader": "^2.0.0",
     "vue": "^2.6.12",
     "vue-router": "^3.5.1",
@@ -35,7 +37,6 @@
     "concurrently": "^6.0.0",
     "css-loader": "^5.1.0",
     "file-loader": "^6.2.0",
-    "jquery": "^3.5.1",
     "nodemon": "^2.0.7",
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.7",
