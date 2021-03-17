@@ -18,12 +18,11 @@
 import { mapMutations } from 'vuex';
 
 import isUrl from '../../common/isUrl.js';
-
+import getDomainName from '../utils/getDomain.js';
 import { post } from '../api.js';
 
 import Title from './Title.vue';
 
-import getDomainName from '../utils/getDomain.js';
 
 export default {
   data: () => {
@@ -39,8 +38,6 @@ export default {
   methods: {
     submit: async function () {
       const { target } = this;
-
-      // console.log('button pressed', this.$refs.urlerror);
 
       if (!isUrl(target)) {
         return this.showNotUrlError();
@@ -74,7 +71,6 @@ export default {
   },
   components: {
     Title,
-    Notification,
   },
 }
 

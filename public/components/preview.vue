@@ -9,9 +9,6 @@
       is pointed to 
       <span class="fake-link" v-on:click="routeTo(target)"> {{ target }} </span>
     </div>
-
-    <Notification ref="copysuccess" type="success" text="Copy successed"></Notification>
-    <Notification ref="copyfailed" type="danger" text="Copy failed"></Notification>
   </div>
 </template>
 
@@ -27,7 +24,6 @@ import { mapState } from 'vuex';
 import getDomain from '../utils/getDomain.js';
 
 import Title from './Title.vue';
-import Notification from './Notification.vue';
 
 import clipboard from '../utils/clipboard.js';
 import routeTo from '../utils/routeTo.js';
@@ -44,15 +40,32 @@ export default {
     copyToClipboard: async function () {
       try {
         await clipboard(this.aliasUrl);
-        this.$refs.copysuccess.show();
+        this.showCopySuccess();
       } catch (e) {
-        this.$refs.copyfailed.show();
+        this.showCopyFailed();
       }
     },
+    showCopySuccess() {
+      this.$bvToast.toast('Alias link is copied to your clipboard.', {
+        variant: 'success',
+        title: 'Success!',
+        toaster: 'b-toaster-bottom-right',
+        append: true,
+        autoHideDelay: 2500,
+      });
+    },
+    showCopyFailed() {
+      this.$bvToast.toast('Alias link copied failed!', {
+        variant: 'danger',
+        title: 'Oops!',
+        toaster: 'b-toaster-bottom-right',
+        append: true,
+        autoHideDelay: 2500,
+      });
+    }
   },
   components: {
     Title,
-    Notification,
   },
 }
 
