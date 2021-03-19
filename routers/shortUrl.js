@@ -1,20 +1,26 @@
 
-export default function (ctx, next) { 
-  // console.log('shortUrl router', ctx);
+import { getRecord } from '../models/Record.js';
 
-  const shortUrlResult = null; // TODO: connect with db
+export default async function (ctx, next) { 
+  const { alias } = /\/(?<alias>[^/]*)/.exec(ctx.request.url).groups;
+
+  const shortUrlResult = await getRecord({ alias }); // TODO: connect with db
+  
+  console.log(alias, shortUrlResult);
 
   if (!shortUrlResult) {
     return next();
   }
 
-  if (shortUrlResult.isUrl) {
-    return ctx.redirect(shortUrlResult.result);
-  } 
-  else if (shortUrlResult.isText) {
-    return ctx.response.body = shortUrlResult.result; // TODO: use SPA page to display
-  }
-  else {
-    return ctx.response.status(500);
-  }
+  return ctx.redirect(shortUrlResult.target);
+
+  // if (shortUrlResult.isUrl) {
+  //   return ctx.redirect(shortUrlResult.result);
+  // } 
+  // else if (shortUrlResult.isText) {
+  //   return ctx.response.body = shortUrlResult.result; // TODO: use SPA page to display
+  // }
+  // else {
+  //   return ctx.response.status(500);
+  // }
 }

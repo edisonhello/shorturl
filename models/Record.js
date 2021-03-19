@@ -17,3 +17,7 @@ export let Record;
 export function initModel(connection) {
   Record = connection.model('records', RecordSchema);
 }
+
+export async function getRecord(filter) {
+  return Record.findOne(filter).exec();
+}

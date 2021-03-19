@@ -16,7 +16,7 @@ async function getUniqueAlias() {
   }
 }
 
-async function createNew(ctx) {
+export async function postRecord(ctx) {
   const { target } = ctx.request.body;
 
   if (!isUrl(target)) {
@@ -38,5 +38,3 @@ async function createNew(ctx) {
 
   ctx.response.body = { alias, target };
 }
-
-export default createNew;

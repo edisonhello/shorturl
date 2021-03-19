@@ -50,7 +50,7 @@ describe('index component', () => {
   // })
 });
 
-describe('Test submit function', () => {
+describe('Test triggering submit function', () => {
   let mockFn;
   let wrapper;
 
@@ -74,3 +74,9 @@ describe('Test submit function', () => {
     expect(mockFn).toBeCalledTimes(1);
   });
 });
+
+describe('Test submit', () => {
+  it('Should route to preview with valid url provided', () => {
+    throw 0;
+  })
+})

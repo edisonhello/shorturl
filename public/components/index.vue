@@ -43,7 +43,7 @@ export default {
         return this.showNotUrlError();
       }
 
-      const { alias } = await post('createNew', { target });
+      const { alias } = await post('record', { target });
 
       this.setAlias(alias);
       this.setTarget(target);
