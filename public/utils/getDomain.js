@@ -1,7 +1,6 @@
 
-function getDomain() {
+function getDomain(url = window.location.href) {
   const reg = /(?<domain>^[^:]*:\/\/[^/]*)/;
-  const url = window.location.href;
   const result = reg.exec(url);
 
   if (!result) throw new Error('window.location.href is not a url');

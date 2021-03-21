@@ -14,9 +14,6 @@ Test controller
 
 ## Frontend
 
-Bootstrap
-Basic website
-
 Record session history
 
 Enter to trigger button
